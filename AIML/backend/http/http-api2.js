@@ -3,12 +3,12 @@ const http = require("http")
 
 const server = http.createServer(async(req, res)=>{
       res.writeHead(200, {"Content-Type":"html"});
-      const apiResponse = await axios.get("https://api.github.com/users",{
+      const apiResponse = await axios.get("https://api.github.com/search/users",{
             params:{
                   q:"location:ghaziabad"
             }
       });
-      const userData = apiResponse.data;
+      const userData = apiResponse.data.items;
       let frontData = `<html><head></head><body></body></html>`;
       userData.forEach(user => {
             frontData += `<div><img src="${user.avatar_url}"</div>`;
